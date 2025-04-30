@@ -28,6 +28,7 @@ return new class extends Migration
             $table->json('social_links')->nullable();
             $table->json('services')->nullable();
             $table->boolean('is_active')->default(true);
+            $table->date('deleted_at')->nullable();
             $table->timestamps();
         });
     }

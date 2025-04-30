@@ -3,15 +3,13 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\IndividualProfileResource\Pages;
-use App\Filament\Resources\IndividualProfileResource\RelationManagers;
 use App\Models\IndividualProfile;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Auth;
 
 class IndividualProfileResource extends Resource
 {
@@ -20,6 +18,11 @@ class IndividualProfileResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-user';
 
     protected static ?string $navigationGroup = 'Public Profiles';
+
+    public static function getSlug(): string
+    {
+        return 'my-profiles'; // replaces 'individual-profiles'
+    }
 
     public static function form(Form $form): Form
     {
@@ -33,6 +36,7 @@ class IndividualProfileResource extends Resource
                         Forms\Components\TextInput::make('title')
                             ->nullable(),
                         Forms\Components\TextInput::make('fullname')
+                            ->default(Auth::user()->name)
                             ->required(),
                         Forms\Components\Textarea::make('about')
                             ->nullable(),
@@ -60,30 +64,24 @@ class IndividualProfileResource extends Resource
                         Forms\Components\Repeater::make('websites')
                             ->schema([
                                 Forms\Components\TextInput::make('url')
-                                    ->url()
-                                    ->required(),
-                                Forms\Components\TextInput::make('title')
-                                    ->required(),
+                                    ->url(),
+                                Forms\Components\TextInput::make('title'),
                             ])
                             ->columns(2),
 
                         Forms\Components\Repeater::make('contacts')
                             ->schema([
                                 Forms\Components\TextInput::make('phone')
-                                    ->tel()
-                                    ->required(),
-                                Forms\Components\TextInput::make('type')
-                                    ->required(),
+                                    ->tel(),
+                                Forms\Components\TextInput::make('type'),
                             ])
                             ->columns(2),
 
                         Forms\Components\Repeater::make('emails')
                             ->schema([
                                 Forms\Components\TextInput::make('email')
-                                    ->email()
-                                    ->required(),
-                                Forms\Components\TextInput::make('type')
-                                    ->required(),
+                                    ->email(),
+                                Forms\Components\TextInput::make('type'),
                             ])
                             ->columns(2),
                     ])->columns(1),
@@ -92,11 +90,9 @@ class IndividualProfileResource extends Resource
                     ->schema([
                         Forms\Components\Repeater::make('social_links')
                             ->schema([
-                                Forms\Components\TextInput::make('platform')
-                                    ->required(),
+                                Forms\Components\TextInput::make('platform'),
                                 Forms\Components\TextInput::make('url')
-                                    ->url()
-                                    ->required(),
+                                    ->url(),
                             ])
                             ->columns(2),
                     ])->columns(1),
@@ -130,8 +126,10 @@ class IndividualProfileResource extends Resource
                 Tables\Filters\TernaryFilter::make('is_active'),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make(),
+                Tables\Actions\EditAction::make()->visible(fn ($record): bool => !$record->trashed()),
                 Tables\Actions\DeleteAction::make(),
+                Tables\Actions\RestoreAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
