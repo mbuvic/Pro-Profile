@@ -8,6 +8,7 @@ use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 use Filament\Resources\Components\Tab;
 use Illuminate\Database\Eloquent\Builder;
+use Filament\Notifications\Notification;
 
 
 class ListIndividualProfiles extends ListRecords
@@ -19,6 +20,35 @@ class ListIndividualProfiles extends ListRecords
         return [
             Actions\CreateAction::make()->label('Add New Profile'),
         ];
+    }
+
+    public function mount(): void
+    {
+        parent::mount();
+
+        // If someone lands directly on the "archived" tab...
+        if ($this->activeTab === 'archived') {
+            $this->warningToast();
+        }
+    }
+
+    // Livewire hook: fires whenever $activeTab changes
+    public function updating($name, $value): void
+    {
+        if ($name === 'activeTab' && $value === 'archived') {
+            $this->warningToast();
+        }
+    }
+    
+    
+
+    protected function warningToast(): void
+    {
+        Notification::make()
+            ->warning()
+            ->title('Retention policy reminder')
+            ->body('Any profile that’s been in “Archived” for over 30 days will be permanently deleted.')
+            ->send();
     }
 
     public function getTabs(): array

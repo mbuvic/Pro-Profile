@@ -10,6 +10,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Support\Facades\Auth;
+use Filament\Infolists\Infolist;
 
 class IndividualProfileResource extends Resource
 {
@@ -144,6 +145,7 @@ class IndividualProfileResource extends Resource
             //
         ];
     }
+
 
     public static function getPages(): array
     {

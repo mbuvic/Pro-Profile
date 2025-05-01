@@ -4,9 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class BusinessProfile extends Model
 {
+    use LogsActivity, SoftDeletes;
     protected $fillable = [
         'user_id',
         'username',
@@ -32,6 +36,11 @@ class BusinessProfile extends Model
         'services' => 'array',
         'is_active' => 'boolean',
     ];
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()->logOnly(['*']);
+    }
 
     public function user(): BelongsTo
     {
