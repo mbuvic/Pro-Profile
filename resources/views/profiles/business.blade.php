@@ -7,7 +7,7 @@
         <div class="absolute -bottom-16 left-8">
             <div class="h-32 w-32 rounded-full border-4 border-white overflow-hidden bg-white">
                 @if($profile->logo)
-                    <img src="{{ $profile->logo }}" alt="{{ $profile->business_name }}" class="h-full w-full object-cover">
+                    <img src="{{ asset('storage/' . $profile->logo) }}" alt="{{ $profile->business_name }}" class="h-full w-full object-cover">
                 @else
                     <div class="h-full w-full bg-gray-200 flex items-center justify-center">
                         <i class="fas fa-building text-4xl text-gray-400"></i>
