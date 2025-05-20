@@ -26,7 +26,7 @@ class UserPanelProvider extends PanelProvider
     {
         return $panel
             ->default()
-            ->id('user')
+            ->id('account')
             ->path('account')
             ->login()
             ->registration()

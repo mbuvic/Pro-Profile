@@ -8,8 +8,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Panel;
 
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser, MustVerifyEmail
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
@@ -61,5 +64,18 @@ class User extends Authenticatable
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function canAccessPanel(Panel $panel): bool
+    {
+        if($panel->getId() === 'admin') {
+            return $this->isAdmin() && $this->hasVerifiedEmail();
+        }
+
+        if($panel->getId() === 'account') {
+            return $this->hasVerifiedEmail();
+        }
+        
+        return false;
     }
 }
