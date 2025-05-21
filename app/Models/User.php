@@ -11,11 +11,13 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements FilamentUser, MustVerifyEmail
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -26,6 +28,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
         'name',
         'email',
         'password',
+        'is_admin',
     ];
 
     /**
@@ -48,6 +51,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'is_admin' => 'boolean',
         ];
     }
 
@@ -64,6 +68,11 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->is_admin;
     }
 
     public function canAccessPanel(Panel $panel): bool

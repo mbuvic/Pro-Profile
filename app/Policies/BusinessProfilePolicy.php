@@ -2,12 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\IndividualProfile;
+use App\Models\BusinessProfile;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
-use Illuminate\Support\Facades\Auth;
 
-class IndividualProfilePolicy
+class BusinessProfilePolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -20,9 +19,9 @@ class IndividualProfilePolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, IndividualProfile $individualProfile): bool
+    public function view(User $user, BusinessProfile $businessProfile): bool
     {
-        return $user->isAdmin() || $user->id === $individualProfile->user_id;
+        return $user->isAdmin() || $user->id === $businessProfile->user_id;
     }
 
     /**
@@ -36,32 +35,32 @@ class IndividualProfilePolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, IndividualProfile $individualProfile): bool
+    public function update(User $user, BusinessProfile $businessProfile): bool
     {
-        return $user->isAdmin() || $user->id === $individualProfile->user_id;
+        return $user->isAdmin() || $user->id === $businessProfile->user_id;
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, IndividualProfile $individualProfile): bool
+    public function delete(User $user, BusinessProfile $businessProfile): bool
     {
-        return $user->isAdmin() || $user->id === $individualProfile->user_id;
+        return $user->isAdmin() || $user->id === $businessProfile->user_id;
     }
 
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, IndividualProfile $individualProfile): bool
+    public function restore(User $user, BusinessProfile $businessProfile): bool
     {
-        return $user->isAdmin() || $user->id === $individualProfile->user_id;
+        return $user->isAdmin() || $user->id === $businessProfile->user_id;
     }
 
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, IndividualProfile $individualProfile): bool
+    public function forceDelete(User $user, BusinessProfile $businessProfile): bool
     {
         return $user->isAdmin();
     }
-}
+} 
