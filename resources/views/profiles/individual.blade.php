@@ -140,7 +140,7 @@
         </div>
 
         <div class="flex flex-col sm:flex-row justify-center gap-4">
-            <a href="/register" class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-indigo-50 transition-colors duration-200">
+            <a href="/account/register" class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-indigo-50 transition-colors duration-200">
                 <i class="fas fa-user-plus mr-2"></i>
                 Create Your Profile
             </a>

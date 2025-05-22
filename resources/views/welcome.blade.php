@@ -7,6 +7,26 @@
     <meta name="description" content="Create professional profiles, manage multiple profiles, and get NFC-enabled business cards. Perfect for professionals and businesses.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @keyframes pulse-offer {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        .pulse-offer {
+            animation: pulse-offer 1.5s ease-in-out infinite;
+            display: inline-block;
+        }
+    </style>
 </head>
 <body class="bg-gray-50">
     <!-- Navigation -->
@@ -21,7 +41,7 @@
                         <a href="#features" class="text-gray-700 hover:text-indigo-600 px-3 py-2">Features</a>
                         <a href="#pricing" class="text-gray-700 hover:text-indigo-600 px-3 py-2">Pricing</a>
                         <a href="#nfc-cards" class="text-gray-700 hover:text-indigo-600 px-3 py-2">NFC Cards</a>
-                        <a href="/register" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">Get Started</a>
+                        <a href="/account/register" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">Get Started</a>
                     </div>
                 </div>
             </div>
@@ -43,7 +63,7 @@
                         </p>
                         <div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                             <div class="rounded-md shadow">
-                                <a href="/register" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10">
+                                <a href="/account/register" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10">
                                     Start Free Trial
                                 </a>
                             </div>
@@ -104,9 +124,231 @@
             <div class="mt-12 text-center">
                 <div class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-indigo-50">
                     <i class="fas fa-tag mr-2"></i>
-                    Only KES 2,000 per pack
+                    Get an NFC Business Card + 1 year subscription (Starter Plan) for Only KES 2,000!
                 </div>
-                <p class="mt-4 text-indigo-100">Limited time offer - Get 20% off your first order!</p>
+                <p class="mt-4 text-indigo-100">
+                    <span class="pulse-offer">Limited time offer - Get 10% off your first order!</span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div id="features" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                    <span class="block">Powerful Features for Modern Professionals</span>
+                    <span class="block text-indigo-600 mt-2">Everything You Need to Succeed</span>
+                </h2>
+                <p class="mt-4 text-xl text-gray-600">
+                    Discover why thousands of professionals and businesses choose ProProfile
+                </p>
+            </div>
+
+            <div class="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                <!-- Digital Identity Management -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-100">
+                    <div class="p-6">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 bg-indigo-100 rounded-md p-3">
+                                <i class="fas fa-id-card text-2xl text-indigo-600"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-semibold text-gray-900">Digital Identity Management</h3>
+                            </div>
+                        </div>
+                        <p class="mt-4 text-gray-600">Create and manage multiple professional profiles with custom branding, contact information, and social media links.</p>
+                        <ul class="mt-4 space-y-2">
+                            <li class="flex items-center text-gray-600">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                Custom domain support
+                            </li>
+                            <li class="flex items-center text-gray-600">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                Professional themes
+                            </li>
+                            <li class="flex items-center text-gray-600">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                SEO optimization
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Business Tools -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-100">
+                    <div class="p-6">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 bg-indigo-100 rounded-md p-3">
+                                <i class="fas fa-briefcase text-2xl text-indigo-600"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-semibold text-gray-900">Business Tools</h3>
+                            </div>
+                        </div>
+                        <p class="mt-4 text-gray-600">Powerful tools to showcase your services, manage appointments, and grow your business.</p>
+                        <ul class="mt-4 space-y-2">
+                            <li class="flex items-center text-gray-600">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                Service catalog
+                            </li>
+                            <li class="flex items-center text-gray-600">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                Business analytics
+                            </li>
+                            <li class="flex items-center text-gray-500">
+                                <i class="fas fa-check text-gray-500 mr-2"></i>
+                                Appointment scheduling (coming soon)
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Contact Management -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-100">
+                    <div class="p-6">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 bg-indigo-100 rounded-md p-3">
+                                <i class="fas fa-address-book text-2xl text-indigo-600"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-semibold text-gray-900">Contact Management</h3>
+                            </div>
+                        </div>
+                        <p class="mt-4 text-gray-600">Easily manage and share your contact information with built-in NFC technology.</p>
+                        <ul class="mt-4 space-y-2">
+                            <li class="flex items-center text-gray-600">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                NFC business cards
+                            </li>
+                            <li class="flex items-center text-gray-600">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                QR code generation
+                            </li>
+                            <li class="flex items-center text-gray-600">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                Contact analytics
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Social Media Integration -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-100">
+                    <div class="p-6">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 bg-indigo-100 rounded-md p-3">
+                                <i class="fas fa-share-alt text-2xl text-indigo-600"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-semibold text-gray-900">Social Media Integration</h3>
+                            </div>
+                        </div>
+                        <p class="mt-4 text-gray-600">Connect all your social media profiles in one place for maximum visibility.</p>
+                        <ul class="mt-4 space-y-2">
+                            <li class="flex items-center text-gray-600">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                Multi-platform support
+                            </li>
+                            <li class="flex items-center text-gray-600">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                Social media analytics
+                            </li>
+                            <li class="flex items-center text-gray-600">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                Content scheduling
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Analytics & Insights -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-100">
+                    <div class="p-6">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 bg-indigo-100 rounded-md p-3">
+                                <i class="fas fa-chart-line text-2xl text-indigo-600"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-semibold text-gray-900">Analytics & Insights</h3>
+                            </div>
+                        </div>
+                        <p class="mt-4 text-gray-600">Track your profile performance with detailed analytics and insights.</p>
+                        <ul class="mt-4 space-y-2">
+                            <li class="flex items-center text-gray-600">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                Visitor tracking
+                            </li>
+                            <li class="flex items-center text-gray-600">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                Engagement metrics
+                            </li>
+                            <li class="flex items-center text-gray-600">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                Conversion tracking
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Security & Privacy -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-100">
+                    <div class="p-6">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 bg-indigo-100 rounded-md p-3">
+                                <i class="fas fa-shield-alt text-2xl text-indigo-600"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-semibold text-gray-900">Security & Privacy</h3>
+                            </div>
+                        </div>
+                        <p class="mt-4 text-gray-600">Enterprise-grade security to protect your data and privacy.</p>
+                        <ul class="mt-4 space-y-2">
+                            <li class="flex items-center text-gray-600">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                Two-factor authentication
+                            </li>
+                            <li class="flex items-center text-gray-600">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                Data encryption
+                            </li>
+                            <li class="flex items-center text-gray-600">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                Privacy controls
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature Highlights -->
+            <div class="mt-16 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-lg shadow-lg overflow-hidden">
+                <div class="px-8 py-12">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="text-center">
+                            <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-white/20 mb-4">
+                                <i class="fas fa-mobile-alt text-2xl text-white"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold text-white">Mobile First</h3>
+                            <p class="mt-2 text-indigo-100">Optimized for all devices</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-white/20 mb-4">
+                                <i class="fas fa-bolt text-2xl text-white"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold text-white">Lightning Fast</h3>
+                            <p class="mt-2 text-indigo-100">Instant profile loading</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-white/20 mb-4">
+                                <i class="fas fa-globe text-2xl text-white"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold text-white">Global Reach</h3>
+                            <p class="mt-2 text-indigo-100">Available worldwide</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -133,13 +375,17 @@
                             <span class="text-4xl font-extrabold text-gray-900">KES 200</span>
                             <span class="text-base font-medium text-gray-500">/year</span>
                         </p>
-                        <a href="/register" class="mt-8 block w-full bg-indigo-600 border border-transparent rounded-md py-2 text-sm font-semibold text-white text-center hover:bg-indigo-700">
+                        <a href="/account/register" class="mt-8 block w-full bg-indigo-600 border border-transparent rounded-md py-2 text-sm font-semibold text-white text-center hover:bg-indigo-700">
                             Get Started
                         </a>
                     </div>
                     <div class="pt-6 pb-8 px-6">
                         <h4 class="text-sm font-medium text-gray-900 tracking-wide">What's included</h4>
                         <ul class="mt-6 space-y-4">
+                            <li class="flex space-x-3">
+                                <i class="fas fa-check text-green-500"></i>
+                                <span class="text-sm text-gray-500">7 days free trial</span>
+                            </li>
                             <li class="flex space-x-3">
                                 <i class="fas fa-check text-green-500"></i>
                                 <span class="text-sm text-gray-500">1 Individual Profile</span>
@@ -149,8 +395,12 @@
                                 <span class="text-sm text-gray-500">Custom URL</span>
                             </li>
                             <li class="flex space-x-3">
-                                <i class="fas fa-check text-green-500"></i>
-                                <span class="text-sm text-gray-500">Basic Analytics</span>
+                                <i class="fas fa-times text-red-500"></i>
+                                <span class="text-sm text-gray-500">Profile Visit Analytics</span>
+                            </li>
+                            <li class="flex space-x-3">
+                                <i class="fas fa-times text-red-500"></i>
+                                <span class="text-sm text-gray-500">Priority Support</span>
                             </li>
                         </ul>
                     </div>
@@ -165,13 +415,17 @@
                             <span class="text-4xl font-extrabold text-gray-900">KES 500</span>
                             <span class="text-base font-medium text-gray-500">/year</span>
                         </p>
-                        <a href="/register" class="mt-8 block w-full bg-indigo-600 border border-transparent rounded-md py-2 text-sm font-semibold text-white text-center hover:bg-indigo-700">
+                        <a href="/account/register" class="mt-8 block w-full bg-indigo-600 border border-transparent rounded-md py-2 text-sm font-semibold text-white text-center hover:bg-indigo-700">
                             Get Started
                         </a>
                     </div>
                     <div class="pt-6 pb-8 px-6">
                         <h4 class="text-sm font-medium text-gray-900 tracking-wide">What's included</h4>
                         <ul class="mt-6 space-y-4">
+                            <li class="flex space-x-3">
+                                <i class="fas fa-check text-green-500"></i>
+                                <span class="text-sm text-gray-500">7 days free trial</span>
+                            </li>
                             <li class="flex space-x-3">
                                 <i class="fas fa-check text-green-500"></i>
                                 <span class="text-sm text-gray-500">2 Individual Profiles</span>
@@ -182,7 +436,7 @@
                             </li>
                             <li class="flex space-x-3">
                                 <i class="fas fa-check text-green-500"></i>
-                                <span class="text-sm text-gray-500">Advanced Analytics</span>
+                                <span class="text-sm text-gray-500">Profile Visit Analytics</span>
                             </li>
                             <li class="flex space-x-3">
                                 <i class="fas fa-check text-green-500"></i>
@@ -201,13 +455,17 @@
                             <span class="text-4xl font-extrabold text-gray-900">KES 1,000</span>
                             <span class="text-base font-medium text-gray-500">/year</span>
                         </p>
-                        <a href="/register" class="mt-8 block w-full bg-indigo-600 border border-transparent rounded-md py-2 text-sm font-semibold text-white text-center hover:bg-indigo-700">
+                        <a href="/account/register" class="mt-8 block w-full bg-indigo-600 border border-transparent rounded-md py-2 text-sm font-semibold text-white text-center hover:bg-indigo-700">
                             Get Started
                         </a>
                     </div>
                     <div class="pt-6 pb-8 px-6">
                         <h4 class="text-sm font-medium text-gray-900 tracking-wide">What's included</h4>
                         <ul class="mt-6 space-y-4">
+                            <li class="flex space-x-3">
+                                <i class="fas fa-check text-green-500"></i>
+                                <span class="text-sm text-gray-500">7 days free trial</span>
+                            </li>
                             <li class="flex space-x-3">
                                 <i class="fas fa-check text-green-500"></i>
                                 <span class="text-sm text-gray-500">5 Individual Profiles</span>
@@ -218,15 +476,11 @@
                             </li>
                             <li class="flex space-x-3">
                                 <i class="fas fa-check text-green-500"></i>
-                                <span class="text-sm text-gray-500">Premium Analytics</span>
+                                <span class="text-sm text-gray-500">Profile Visit Analytics</span>
                             </li>
                             <li class="flex space-x-3">
                                 <i class="fas fa-check text-green-500"></i>
                                 <span class="text-sm text-gray-500">24/7 Support</span>
-                            </li>
-                            <li class="flex space-x-3">
-                                <i class="fas fa-check text-green-500"></i>
-                                <span class="text-sm text-gray-500">Custom Branding</span>
                             </li>
                         </ul>
                     </div>
@@ -255,7 +509,7 @@
                 Join thousands of professionals who have already created their profiles.
             </p>
             <div class="mt-8 flex justify-center space-x-4">
-                <a href="/register" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-indigo-50">
+                <a href="/account/register" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-indigo-50">
                     Get Started Free
                 </a>
                 <a href="#pricing" class="inline-flex items-center justify-center px-5 py-3 border border-white text-base font-medium rounded-md text-white hover:bg-indigo-600">
@@ -281,7 +535,7 @@
             </div>
             <div class="mt-8 md:mt-0 md:order-1">
                 <p class="text-center text-base text-gray-400">
-                    &copy; 2024 ProProfile. All rights reserved.
+                    &copy; {{ date('Y') }} ProProfile. All rights reserved.
                 </p>
             </div>
         </div>
