@@ -92,14 +92,16 @@ jobs:
           localDir:  "./"
           remoteDir: "/"
           options: >
-            --reverse             # Upload local to remote
-            --delete              # Delete remote files not present locally
-            --verbose             # Print detailed output
-            --use-cache           # Optional: speeds up sync
-            --exclude-glob .env
-            --exclude-glob .git*
-            --exclude-glob database/database.sqlite
-            --exclude-glob node_modules/
-            --exclude-glob release-*.zip
-            --exclude-glob vendor/
+            --reverse
+            --delete
+            --verbose
+            --use-cache
+            --exclude-glob=.env
+            --exclude-glob=.git*
+            --exclude-glob=database/database.sqlite
+            --exclude-glob=node_modules/
+            --exclude-glob=release-*.zip
+            --exclude-glob=vendor/
+          forceSsl: false
+
 
