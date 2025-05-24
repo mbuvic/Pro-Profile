@@ -83,17 +83,18 @@ jobs:
       - name: Unzip release
         run: unzip release/*.zip
 
-      - name: Sync changed files via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      - name: Upload via SFTP
+        uses: appleboy/scp-action@v1
         with:
-          server: ${{ secrets.FTP_HOST }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          exclude: |
-            #**/public/**
-            **/.env
-            **/.git*
-            #**/database/database.sqlite
-            **/node_modules/**
-            **/release-*.zip
-            **/vendor/**
+          host:      ${{ secrets.FTP_HOST }}
+          username:  ${{ secrets.FTP_USERNAME }}
+          password:  ${{ secrets.FTP_PASSWORD }}
+          port:      22
+          # exclude: |
+          #   #**/public/**
+          #   **/.env
+          #   **/.git*
+          #   #**/database/database.sqlite
+          #   **/node_modules/**
+          #   **/release-*.zip
+          #   **/vendor/**
