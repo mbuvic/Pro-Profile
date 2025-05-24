@@ -84,7 +84,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
         }
 
         if($panel->getId() === 'account') {
-            return $this->hasVerifiedEmail();
+            return true;
         }
         
         return false;
