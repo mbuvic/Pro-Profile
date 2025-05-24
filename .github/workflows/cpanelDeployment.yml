@@ -1,0 +1,99 @@
+name: Pro-Profiles CI/CD
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    name: 🔨 Build & Test
+    runs-on: ubuntu-latest
+    outputs:
+      artifact-path: ${{ steps.package.outputs.artifact-path }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: sqlite, pdo_sqlite
+          ini-values: post_max_size=256M, upload_max_filesize=256M
+
+      - name: Install Composer deps
+        run: composer install --no-progress --no-suggest --prefer-dist
+
+    #   - name: Install & build NPM
+    #     run: |
+    #       npm ci
+    #       npm run build
+
+      - name: Copy environment file
+        run: cp .env.example .env
+
+      - name: Generate production APP_KEY
+        run: php artisan key:generate --force --no-interaction
+
+    #Inspect .env to confirm APP_KEY is present
+      - name: Debug .env
+        run: |
+            cat .env
+    #Create Database
+      - name: Prepare SQLite
+        run: |
+            touch database/database.sqlite
+        env:
+            APP_ENV: testing
+            DB_CONNECTION: sqlite
+            DB_DATABASE: database/database.sqlite
+
+
+      - name: Migrate & run tests
+        run: |
+          php artisan migrate:fresh --seed --force
+
+      - name: Package artifact
+        id: package
+        run: |
+          ZIP_NAME="release-${{ github.sha }}.zip"
+          zip -r "$ZIP_NAME" . -x "*.git*" "node_modules/*"
+          echo "artifact-path=$ZIP_NAME" >> $GITHUB_OUTPUT
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: laravel-release
+          path: ${{ steps.package.outputs.artifact-path }}
+
+  deploy:
+    name: 🚀 Deploy to cPanel (via FTP)
+    needs: build
+    runs-on: ubuntu-latest
+    if: needs.build.result == 'success'
+
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: laravel-release
+          path: release
+
+      - name: Unzip release
+        run: unzip release/*.zip
+
+      - name: Sync changed files via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          exclude: |
+            #**/public/**
+            #**/.env
+            **/.git*
+            #**/database/database.sqlite
+            **/node_modules/**
+            **/release-*.zip
+            **/vendor/**
