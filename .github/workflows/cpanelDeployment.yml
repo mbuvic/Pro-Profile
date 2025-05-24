@@ -90,16 +90,16 @@ jobs:
           user:      ${{ secrets.FTP_USERNAME }}
           password:  ${{ secrets.FTP_PASSWORD }}
           localDir:  "./"
-          remoteDir: "/"
-          options:   "--delete
-                      --mirror
-                      --verbose
-                      --passive
-                      # --active
-                      --exclude-glob .env
-                      --exclude-glob .git*
-                      --exclude-glob database/database.sqlite
-                      --exclude-glob node_modules/*
-                      --exclude-glob release-*.zip
-                      --exclude-glob vendor/*
-                      "
+          remoteDir: "/public_html/"
+          options: >
+            --reverse             # Upload local to remote
+            --delete              # Delete remote files not present locally
+            --verbose             # Print detailed output
+            --use-cache           # Optional: speeds up sync
+            --exclude-glob .env
+            --exclude-glob .git*
+            --exclude-glob database/database.sqlite
+            --exclude-glob node_modules/
+            --exclude-glob release-*.zip
+            --exclude-glob vendor/
+
