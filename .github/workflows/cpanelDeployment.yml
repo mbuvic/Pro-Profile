@@ -90,7 +90,7 @@ jobs:
           user:      ${{ secrets.FTP_USERNAME }}
           password:  ${{ secrets.FTP_PASSWORD }}
           localDir:  "./"
-          remoteDir: "/public_html/"
+          remoteDir: "/"
           options: >
             --reverse             # Upload local to remote
             --delete              # Delete remote files not present locally
