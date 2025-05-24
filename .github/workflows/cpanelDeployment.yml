@@ -91,7 +91,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           exclude: |
             #**/public/**
-            #**/.env
+            **/.env
             **/.git*
             #**/database/database.sqlite
             **/node_modules/**
